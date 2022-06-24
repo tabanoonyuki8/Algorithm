@@ -1,0 +1,77 @@
+//Write a program to masure and compare the performance of Bubble
+Sort and Quick Sort algorithm using time function.
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+void bubbleSort(int list[], int length) {
+ int temp;
+ for(int i = 0; i < length; i++)
+
+{
+ for(int j = 0; j < length
+-
+i
+-1; j++)
+
+{
+ if (list[j] > list[j+1])
+
+{
+ temp = list[j];
+ list[j] = list[j+1];
+ list[j+1] = temp;
+
+}
+}
+}
+}
+int partition(int list[] , int left, int right)
+{
+ int pivot_element = list[left];
+ int lb = left, ub = right;
+ int temp;
+ while (left < right)
+{
+ while(list[left] <= pivot_element)
+ left++;
+ while(list[right] > pivot_element)
+ right--
+; if (left < right)
+{
+ temp = list[left];
+ list[left] = list[right];
+Page | 8
+ list[right] = temp; } }
+ list[lb] = list[right];
+ list[right] = pivot_element;
+ return right; }
+void quickSort(int list[], int left, int right)
+{
+ if (left < right) {
+ int pivot = partition(list, left, right);
+ quickSort(list, left, pivot-1);
+ quickSort(list, pivot+1, right); } }
+int main() {
+ int length, i;
+ double t1, t2;
+ cout<< "Enter length: ";
+ cin>> length;
+ int list[length];
+ for(i=0; i<length; i++) {
+ list[i] = rand(); }
+ t1 = clock();
+ bubbleSort(list, length);
+ t2 = clock();
+ cout << "Bubble Sort\t: " << (t2 - t1)/CLK_TCK << " sec\n";
+ t1 = clock();
+ quickSort(list, 0, length - 1);
+ t2 = clock();
+ cout << "Quick Sort\t: " << (t2 - t1)/CLK_TCK << " sec\n";
+ return 0; }
+ 
+ 
+ //48000
+ 
+ 
